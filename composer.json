@@ -1,0 +1,52 @@
+{
+    "name": "ademers/craft-starter",
+    "description": "A Craft CMS starter project by Andrea DeMers.",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "project"
+    ],
+    "type": "project",
+    "version": "1.4.2",
+    "license": "MIT",
+    "require": {
+        "craftcms/cms": "3.7.38",
+        "craftcms/contact-form": "2.5.0",
+        "craftcms/redactor": "2.10.6",
+        "mmikkel/retcon": "2.4.1",
+        "nystudio107/craft-minify": "1.2.11",
+        "nystudio107/craft-scripts": "1.2.10",
+        "nystudio107/craft-seomatic": "3.4.30",
+        "nystudio107/craft-vite": "1.0.24",
+        "putyourlightson/craft-sprig": "1.12.4",
+        "vlucas/phpdotenv": "^3.4.0",
+        "yiisoft/yii2-redis": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "modules\\": "modules/",
+            "modules\\sitemodule\\": "modules/sitemodule/src/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "8.0.16"
+        },
+        "allow-plugins": {
+            "craftcms/plugin-installer": true,
+            "yiisoft/yii2-composer": true
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@composer dump-autoload -o",
+            "@php craft setup/welcome"
+        ]
+    }
+}
